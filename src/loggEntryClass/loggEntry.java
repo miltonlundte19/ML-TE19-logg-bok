@@ -1,4 +1,4 @@
-package model;
+package loggEntryClass;
 
 import java.util.Date;
 
