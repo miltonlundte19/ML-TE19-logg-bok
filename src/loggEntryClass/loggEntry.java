@@ -1,8 +1,9 @@
 package loggEntryClass;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class loggEntry {
+public class loggEntry implements Serializable {
     private String message;
     private String author;
     private Date createdAt;

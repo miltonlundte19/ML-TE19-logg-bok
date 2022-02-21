@@ -2,10 +2,7 @@ package model;
 
 import loggEntryClass.loggEntry;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.ArrayList;
 
 public class loggBokModell {
@@ -14,19 +11,37 @@ public class loggBokModell {
 
     public loggBokModell() {
         loggfile = new File("loggentryse");
-        ObjectInputStream ins = null;
+        loadS();
+    }
+
+    private void loadS() {
         try {
-            ins = new ObjectInputStream(new FileInputStream(loggfile));
-        } catch (IOException e) {
+            ObjectInputStream ins = new ObjectInputStream(new FileInputStream(loggfile));
+            this.loggentrys = (ArrayList<loggEntry>) ins.readObject();
+            ins.close();
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        while (ins != null) {
-            try {
-                loggentrys.add((loggEntry) ins.readObject());
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
 
+    }
+
+    public void load(File loggfile, Boolean saveFurst) {
+        if (saveFurst) {
+            save(this.loggfile);
+        }
+        this.loggfile = loggfile;
+        this.loggentrys = null;
+        loadS();
+    }
+
+    public void save(File loggfile) {
+        try {
+            ObjectOutputStream outs = new ObjectOutputStream(new FileOutputStream(loggfile));
+            outs.writeObject(this.loggentrys);
+            outs.flush();
+            outs.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
