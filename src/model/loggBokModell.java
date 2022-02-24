@@ -44,4 +44,19 @@ public class loggBokModell {
             e.printStackTrace();
         }
     }
+
+    public void save() {
+        try {
+            ObjectOutputStream outs = new ObjectOutputStream(new FileOutputStream(loggfile));
+            outs.writeObject(this.loggentrys);
+            outs.flush();
+            outs.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<loggEntry> getLoggentrys() {
+        return loggentrys;
+    }
 }

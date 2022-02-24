@@ -10,4 +10,28 @@ public class loggBokView {
 
     private JMenuBar menuBar;
     private JMenu menu;
+
+    public JPanel getPanel() {
+        return panel1;
+    }
+
+    public JButton getButton() {
+        return button1;
+    }
+
+    public JTextField getTextField() {
+        return textField1;
+    }
+
+    public JTextPane getTextPane() {
+        return textPane1;
+    }
+
+    public JMenuBar getMenuBar() {
+        return menuBar;
+    }
+
+    public JMenu getMenu() {
+        return menu;
+    }
 }
